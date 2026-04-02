@@ -25,7 +25,7 @@ export default function Help() {
         ].map((c, i) => (
           <div key={i} className="bg-white border border-border rounded p-4 text-center">
             <div className="w-10 h-10 rounded-full bg-dafo-blue-50 text-dafo-blue flex items-center justify-center mx-auto mb-2"><c.icon size={18} /></div>
-            <h3 className="text-13 font-bold text-text-dark">{c.title}</h3>
+            <h3 className="text-13 font-semibold text-text-dark">{c.title}</h3>
             <p className="text-11 text-text-muted mb-2">{c.sub}</p>
             <span className="text-13 font-semibold text-dafo-blue">{c.link}</span>
           </div>
@@ -49,7 +49,7 @@ export default function Help() {
         ].map((r, i) => (
           <div key={i} className="bg-white border border-border rounded p-3">
             <r.icon size={16} className="text-dafo-blue mb-1.5" />
-            <h3 className="text-13 font-bold text-text-dark mb-0.5">{r.title}</h3>
+            <h3 className="text-13 font-semibold text-text-dark mb-0.5">{r.title}</h3>
             <p className="text-12 text-text-muted mb-2">{r.desc}</p>
             <button className="text-12 text-dafo-blue font-medium flex items-center gap-1">View <ExternalLink size={11} /></button>
           </div>

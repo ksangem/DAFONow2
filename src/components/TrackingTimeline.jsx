@@ -40,12 +40,12 @@ export default function TrackingTimeline({ currentStatus, compact = false }) {
               <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
                 done ? 'bg-success-light text-white' : active ? 'bg-dafo-blue text-white ring-4 ring-dafo-blue-50' : 'bg-border text-text-muted'
               }`}>
-                {done ? <Check size={12} strokeWidth={3} /> : <span className="text-11 font-semibold">{i + 1}</span>}
+                {done ? <Check size={12} strokeWidth={3} /> : <span className="text-11 font-medium">{i + 1}</span>}
               </div>
               {i < trackingSteps.length - 1 && <div className={`w-0.5 flex-1 min-h-28 ${done ? 'bg-success-light' : 'bg-border'}`} />}
             </div>
             <div className="pb-5">
-              <div className={`text-13 font-semibold ${done || active ? 'text-text-dark' : 'text-text-muted'}`}>{step.label}</div>
+              <div className={`text-13 font-medium ${done || active ? 'text-text-dark' : 'text-text-muted'}`}>{step.label}</div>
               <div className={`text-12 ${active ? 'text-dafo-blue font-medium' : 'text-text-muted'}`}>{step.desc}</div>
             </div>
           </div>

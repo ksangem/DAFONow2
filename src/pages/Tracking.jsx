@@ -47,7 +47,7 @@ export default function Tracking() {
                   <StatusBadge status={o.status} />
                   {o.priority === 'rush' && <span className="text-11 font-semibold px-1.5 py-0.5 rounded bg-error-light text-error">Rush</span>}
                 </div>
-                <div className="text-12 text-text-muted">{o.patient} — {o.product} — {o.jobNumber}</div>
+                <div className="text-12 text-text-muted font-normal">{o.patient} — {o.product} — {o.jobNumber}</div>
                 <div className="text-11 text-text-muted">ETA: {new Date(o.eta).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
               </div>
             </div>

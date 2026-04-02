@@ -75,7 +75,7 @@ export default function Orders() {
             {filtered.map(o => (
               <tr key={o.id} onClick={() => navigate(`/orders/${o.id}`)} className="hover:bg-dafo-blue-50 cursor-pointer transition-colors">
                 <td className="px-3 py-1.5">
-                  <div className="font-semibold text-text-dark">{o.id}</div>
+                  <div className="font-medium text-text-dark">{o.id}</div>
                   <div className="text-11 text-text-muted">{o.jobNumber}</div>
                 </td>
                 <td className="px-3 py-1.5">{o.patient}</td>

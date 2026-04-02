@@ -36,7 +36,7 @@ export default function Dashboard() {
               <s.icon size={16} />
             </div>
             <div>
-              <div className="text-11 font-semibold uppercase tracking-wide text-text-muted">{s.label}</div>
+              <div className="text-11 font-medium uppercase tracking-wide text-text-muted">{s.label}</div>
               <div className="text-xl font-bold text-text-dark leading-tight">{s.value}</div>
               <div className="text-11 text-text-muted">{s.sub}</div>
             </div>
@@ -62,7 +62,7 @@ export default function Dashboard() {
                     className="flex items-center gap-3 px-3 py-2 w-full text-left hover:bg-dafo-blue-50 transition-colors"
                   >
                     <div className="flex-1 min-w-0">
-                      <div className="text-13 font-semibold text-text-dark">{d.patient}</div>
+                      <div className="text-13 font-medium text-text-dark">{d.patient}</div>
                       <div className="text-12 text-text-muted">{d.product || 'Product not selected'} — Step {d.step}/5</div>
                     </div>
                     <div className="w-100 flex items-center gap-2">
@@ -102,7 +102,7 @@ export default function Dashboard() {
                 {orders.slice(0, 5).map(o => (
                   <tr key={o.id} onClick={() => navigate(`/orders/${o.id}`)} className="hover:bg-dafo-blue-50 cursor-pointer transition-colors">
                     <td className="px-3 py-1.5">
-                      <div className="font-semibold text-text-dark">{o.id}</div>
+                      <div className="font-medium text-text-dark">{o.id}</div>
                       <div className="text-11 text-text-muted">{o.jobNumber}</div>
                     </td>
                     <td className="px-3 py-1.5 text-text-primary">{o.patient}</td>
@@ -127,7 +127,7 @@ export default function Dashboard() {
               {active.slice(0, 2).map(o => (
                 <div key={o.id} className="px-3 py-2.5 cursor-pointer hover:bg-dafo-blue-50 transition-colors" onClick={() => navigate(`/orders/${o.id}`)}>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-13 font-semibold text-text-dark">{o.id}</span>
+                    <span className="text-13 font-medium text-text-dark">{o.id}</span>
                     <StatusBadge status={o.status} />
                   </div>
                   <div className="text-12 text-text-muted mb-2">{o.patient} — {o.product}</div>

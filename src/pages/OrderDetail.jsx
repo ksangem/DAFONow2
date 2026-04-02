@@ -36,7 +36,7 @@ export default function OrderDetail() {
             {order.tracking && (
               <div className="flex items-center gap-2 mt-3 px-3 py-2 bg-background rounded text-12">
                 <span className="text-text-muted">Tracking:</span>
-                <span className="font-semibold text-text-dark">{order.tracking}</span>
+                <span className="font-normal text-text-dark">{order.tracking}</span>
                 <button className="text-dafo-blue hover:underline ml-1"><Copy size={12} /></button>
               </div>
             )}
@@ -54,7 +54,7 @@ export default function OrderDetail() {
         <div className="space-y-3">
           {/* Patient */}
           <div className="bg-white border border-border rounded p-3">
-            <h3 className="text-12 font-bold text-text-dark flex items-center gap-1.5 mb-2"><User size={13} /> Patient</h3>
+            <h3 className="text-12 font-semibold text-text-dark flex items-center gap-1.5 mb-2"><User size={13} /> Patient</h3>
             {patient && (
               <div className="flex gap-2">
                 <div className="w-8 h-8 rounded-full bg-accent-light text-amber-700 flex items-center justify-center text-11 font-bold shrink-0">
@@ -70,11 +70,11 @@ export default function OrderDetail() {
           </div>
           {/* Product */}
           <div className="bg-white border border-border rounded p-3">
-            <h3 className="text-12 font-bold text-text-dark flex items-center gap-1.5 mb-2"><Package size={13} /> Product</h3>
+            <h3 className="text-12 font-semibold text-text-dark flex items-center gap-1.5 mb-2"><Package size={13} /> Product</h3>
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded bg-dafo-blue-50 text-dafo-blue flex items-center justify-center"><Package size={18} /></div>
               <div>
-                <div className="text-13 font-semibold text-text-dark">{order.product}</div>
+                <div className="text-13 font-medium text-text-dark">{order.product}</div>
                 <div className="text-11 text-text-muted">ETA: {new Date(order.eta).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
               </div>
             </div>

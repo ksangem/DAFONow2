@@ -33,7 +33,7 @@ export default function Drafts() {
               <div className="flex items-start gap-3 mb-2">
                 <div className="w-9 h-9 rounded bg-accent-light text-amber-700 flex items-center justify-center shrink-0"><FileEdit size={16} /></div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-13 font-semibold text-text-dark">{d.patient}</div>
+                  <div className="text-13 font-medium text-text-dark">{d.patient}</div>
                   <div className="text-12 text-text-muted">{d.product || 'Product not selected'} — Step {d.step}/5</div>
                   <div className="text-11 text-text-muted flex items-center gap-1 mt-1"><Clock size={10} /> {dayjs(d.lastEdited).fromNow()}</div>
                 </div>

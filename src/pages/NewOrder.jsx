@@ -111,7 +111,7 @@ export default function NewOrder() {
                     {p.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-13 font-semibold text-text-dark">{p.name}</div>
+                    <div className="text-13 font-medium text-text-dark">{p.name}</div>
                     <div className="text-11 text-text-muted">{p.id} — DOB: {p.dob} — {p.diagnosis}</div>
                   </div>
                   <div className="text-11 text-text-muted whitespace-nowrap">{p.orders} orders</div>
@@ -144,7 +144,7 @@ export default function NewOrder() {
                     <Package size={20} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-13 font-semibold text-text-dark">{p.name}</div>
+                    <div className="text-13 font-medium text-text-dark">{p.name}</div>
                     <div className="text-11 text-text-muted line-clamp-2">{p.desc}</div>
                     <div className="text-11 text-dafo-blue font-medium mt-0.5">{p.category} — {p.sku}</div>
                   </div>
@@ -196,10 +196,10 @@ export default function NewOrder() {
               </div>
               {/* Summary panel */}
               <div className="bg-white border border-border rounded p-3 sticky top-20 self-start">
-                <h3 className="text-12 font-bold text-text-dark mb-3">Order Summary</h3>
+                <h3 className="text-12 font-semibold text-text-dark mb-3">Order Summary</h3>
                 <div className="space-y-2 text-12">
-                  <div><span className="text-text-muted block text-11 uppercase tracking-wide">Patient</span><span className="font-semibold text-text-dark">{patient?.name}</span></div>
-                  <div><span className="text-text-muted block text-11 uppercase tracking-wide">Product</span><span className="font-semibold text-text-dark">{product?.name}</span></div>
+                  <div><span className="text-text-muted block text-11 uppercase tracking-wide">Patient</span><span className="font-medium text-text-dark">{patient?.name}</span></div>
+                  <div><span className="text-text-muted block text-11 uppercase tracking-wide">Product</span><span className="font-medium text-text-dark">{product?.name}</span></div>
                   <hr className="border-border" />
                   <div><span className="text-text-muted block text-11 uppercase tracking-wide">Specs</span>
                     <div className="space-y-0.5 text-text-primary">
@@ -230,7 +230,7 @@ export default function NewOrder() {
                 <div key={section.title}>
                   <div className="flex items-center gap-2 mb-2">
                     <section.icon size={14} className="text-dafo-blue" />
-                    <h3 className="text-13 font-bold text-text-dark flex-1">{section.title}</h3>
+                    <h3 className="text-13 font-semibold text-text-dark flex-1">{section.title}</h3>
                     <button onClick={() => setStep(section.editStep)} className="text-12 text-dafo-blue font-medium">Edit</button>
                   </div>
                   <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-13">
@@ -262,7 +262,7 @@ export default function NewOrder() {
               <div>Trim: {custom.trimStyle} — {custom.laterality}</div>
               <div>Est. Processing: 10–14 business days</div>
             </div>
-            <button onClick={() => setSubmitted(true)} className="w-full py-2.5 bg-dafo-blue text-white rounded font-bold text-sm flex items-center justify-center gap-2 hover:bg-dafo-blue-light transition-colors">
+            <button onClick={() => setSubmitted(true)} className="w-full py-2.5 bg-dafo-blue text-white rounded font-semibold text-sm flex items-center justify-center gap-2 hover:bg-dafo-blue-light transition-colors">
               <Send size={16} /> Submit Order to Cascade
             </button>
             <p className="text-11 text-text-muted mt-2">You'll receive confirmation and can track in real time.</p>

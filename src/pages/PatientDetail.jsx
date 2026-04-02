@@ -24,7 +24,7 @@ export default function PatientDetail() {
         <div className="flex-1">
           <h1 className="text-lg font-bold text-text-dark">{patient.name}</h1>
           <p className="text-12 text-text-muted">{patient.id} — DOB: {patient.dob} (Age {patient.age})</p>
-          <p className="text-13 font-medium text-text-primary mt-0.5">{patient.diagnosis}</p>
+          <p className="text-13 font-normal text-text-primary mt-0.5">{patient.diagnosis}</p>
           <div className="flex gap-4 mt-2">
             <span className="text-12 text-text-muted flex items-center gap-1"><Phone size={11} /> {patient.phone}</span>
             <span className="text-12 text-text-muted flex items-center gap-1"><MapPin size={11} /> {patient.clinic}</span>
@@ -45,7 +45,7 @@ export default function PatientDetail() {
             <tbody className="divide-y divide-border/50">
               {patientOrders.map(o => (
                 <tr key={o.id} onClick={() => navigate(`/orders/${o.id}`)} className="hover:bg-dafo-blue-50 cursor-pointer transition-colors">
-                  <td className="px-3 py-1.5 font-semibold text-text-dark">{o.id}</td>
+                  <td className="px-3 py-1.5 font-medium text-text-dark">{o.id}</td>
                   <td className="px-3 py-1.5">{o.product}</td>
                   <td className="px-3 py-1.5"><StatusBadge status={o.status} /></td>
                   <td className="px-3 py-1.5 text-text-muted text-12">{new Date(o.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</td>

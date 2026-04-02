@@ -50,13 +50,13 @@ export default function Patients() {
                     <div className="w-7 h-7 rounded-full bg-accent-light text-amber-700 flex items-center justify-center text-11 font-bold shrink-0">
                       {p.name.split(' ').map(n => n[0]).join('')}
                     </div>
-                    <span className="font-semibold text-text-dark">{p.name}</span>
+                    <span className="font-medium text-text-dark">{p.name}</span>
                   </div>
                 </td>
                 <td className="px-3 py-1.5 text-text-muted">{p.id}</td>
                 <td className="px-3 py-1.5"><span>{p.dob}</span><span className="text-11 text-text-muted ml-1">(Age {p.age})</span></td>
                 <td className="px-3 py-1.5 text-12 max-w-180 truncate">{p.diagnosis}</td>
-                <td className="px-3 py-1.5 font-semibold">{p.orders}</td>
+                <td className="px-3 py-1.5 font-medium">{p.orders}</td>
                 <td className="px-3 py-1.5 text-text-muted text-12">{new Date(p.lastOrder).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
               </tr>
             ))}
