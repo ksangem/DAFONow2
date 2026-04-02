@@ -43,15 +43,15 @@ export default function GlobalSearch() {
     <button onClick={onClick} className="flex items-center gap-2.5 w-full px-4 py-1.5 text-left hover:bg-dafo-blue-50 transition-colors">
       <div className="w-7 h-7 rounded bg-background flex items-center justify-center text-grey shrink-0"><Icon size={14} /></div>
       <span className="text-13 font-medium text-text-dark">{label}</span>
-      <span className="text-12 text-text-muted ml-auto truncate max-w-[200px]">{sub}</span>
+      <span className="text-12 text-text-muted ml-auto truncate max-w-200">{sub}</span>
     </button>
   )
 
   return (
-    <div className="fixed inset-0 z-[1000] bg-black/30 flex items-start justify-center pt-[10vh]" onClick={() => setSearchOpen(false)}>
+    <div className="fixed inset-0 z-modal bg-black/30 flex items-start justify-center pt-24" onClick={() => setSearchOpen(false)}>
       <motion.div
         initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-        className="w-[500px] bg-white rounded-lg shadow-xl overflow-hidden"
+        className="w-500 bg-white rounded-lg shadow-xl overflow-hidden"
         onClick={e => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border">
@@ -59,7 +59,7 @@ export default function GlobalSearch() {
           <input ref={inputRef} className="flex-1 outline-none text-sm text-text-dark bg-transparent" placeholder="Search patient, order, or job #" value={query} onChange={e => setQuery(e.target.value)} />
           <button onClick={() => setSearchOpen(false)} className="text-text-muted hover:text-grey"><X size={16} /></button>
         </div>
-        <div className="max-h-[350px] overflow-y-auto py-1">
+        <div className="max-h-350 overflow-y-auto py-1">
           {recents.length > 0 && (
             <div>
               <div className="px-4 py-1 text-11 font-semibold uppercase tracking-wide text-text-muted flex items-center gap-1.5"><Clock size={11} />Recent</div>

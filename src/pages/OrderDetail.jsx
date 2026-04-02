@@ -27,7 +27,7 @@ export default function OrderDetail() {
         <span className="text-12 text-text-muted">Job #{order.jobNumber} — {new Date(order.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
       </div>
 
-      <div className="grid grid-cols-[1fr_280px] gap-4">
+      <div className="grid detail-grid gap-4">
         <div className="space-y-4">
           {/* Tracking */}
           <div className="bg-white border border-border rounded p-4">

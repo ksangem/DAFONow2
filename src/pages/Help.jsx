@@ -11,7 +11,7 @@ const faqs = [
 
 export default function Help() {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-[800px]">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-800">
       <div className="mb-4">
         <h1 className="text-xl font-bold text-text-dark">Help & Support</h1>
         <p className="text-12 text-text-secondary">Get help with DAFONow or contact Cascade Dafo</p>

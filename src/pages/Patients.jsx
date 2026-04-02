@@ -25,7 +25,7 @@ export default function Patients() {
         </button>
       </div>
 
-      <div className="flex items-center gap-1.5 px-2.5 py-1 bg-white border border-border rounded text-13 w-[260px] mb-3">
+      <div className="flex items-center gap-1.5 px-2.5 py-1 bg-white border border-border rounded text-13 w-260 mb-3">
         <Search size={13} className="text-text-muted" />
         <input className="flex-1 outline-none bg-transparent text-text-primary" placeholder="Search patients..." value={search} onChange={e => setSearch(e.target.value)} />
       </div>
@@ -55,7 +55,7 @@ export default function Patients() {
                 </td>
                 <td className="px-3 py-1.5 text-text-muted">{p.id}</td>
                 <td className="px-3 py-1.5"><span>{p.dob}</span><span className="text-11 text-text-muted ml-1">(Age {p.age})</span></td>
-                <td className="px-3 py-1.5 text-12 max-w-[180px] truncate">{p.diagnosis}</td>
+                <td className="px-3 py-1.5 text-12 max-w-180 truncate">{p.diagnosis}</td>
                 <td className="px-3 py-1.5 font-semibold">{p.orders}</td>
                 <td className="px-3 py-1.5 text-text-muted text-12">{new Date(p.lastOrder).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
               </tr>

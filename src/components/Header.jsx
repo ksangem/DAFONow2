@@ -20,7 +20,7 @@ export default function Header() {
       {/* Search */}
       <button
         onClick={() => setSearchOpen(true)}
-        className="flex items-center gap-2 px-3 py-1 bg-background border border-border rounded text-text-secondary text-13 hover:border-border-strong transition-colors min-w-[320px]"
+        className="flex items-center gap-2 px-3 py-1 bg-background border border-border rounded text-text-secondary text-13 hover:border-border-strong transition-colors min-w-320"
       >
         <Search size={14} />
         <span>Search patient, order, or job #</span>
@@ -35,19 +35,19 @@ export default function Header() {
         >
           <Bell size={16} />
           {unread > 0 && (
-            <span className="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-error text-white text-[9px] font-bold flex items-center justify-center">
+            <span className="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-error text-white text-9 font-bold flex items-center justify-center">
               {unread}
             </span>
           )}
         </button>
 
         {notifOpen && (
-          <div className="absolute top-full right-0 mt-1 w-[340px] bg-white border border-border rounded-lg shadow-lg z-50">
+          <div className="absolute top-full right-0 mt-1 w-340 bg-white border border-border rounded-lg shadow-lg z-50">
             <div className="flex items-center justify-between px-3 py-2 border-b border-border">
               <span className="font-semibold text-13 text-text-dark">Notifications</span>
               <button className="text-12 text-dafo-blue font-medium">Mark all read</button>
             </div>
-            <div className="max-h-[280px] overflow-y-auto">
+            <div className="max-h-280 overflow-y-auto">
               {notifications.map(n => (
                 <div key={n.id} className={`flex gap-2 px-3 py-2 border-b border-border/50 text-13 cursor-pointer hover:bg-background ${!n.read ? 'bg-dafo-blue-50' : ''}`}>
                   <div className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${!n.read ? 'bg-dafo-blue' : 'bg-transparent'}`} />

@@ -44,7 +44,7 @@ export default function Dashboard() {
         ))}
       </div>
 
-      <div className="grid grid-cols-[1fr_340px] gap-4">
+      <div className="grid dash-grid gap-4">
         {/* Left column */}
         <div className="space-y-4">
           {/* Resume drafts */}
@@ -65,7 +65,7 @@ export default function Dashboard() {
                       <div className="text-13 font-semibold text-text-dark">{d.patient}</div>
                       <div className="text-12 text-text-muted">{d.product || 'Product not selected'} — Step {d.step}/5</div>
                     </div>
-                    <div className="w-[100px] flex items-center gap-2">
+                    <div className="w-100 flex items-center gap-2">
                       <div className="flex-1 h-1 bg-border rounded-full overflow-hidden">
                         <div className="h-full bg-success-light rounded-full" style={{ width: `${d.progress}%` }} />
                       </div>

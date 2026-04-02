@@ -65,3 +65,38 @@ input, select, textarea { font-family: var(--font-sans); }
 .text-11 { font-size: 0.6875rem; }
 .text-12 { font-size: 0.75rem; }
 .text-13 { font-size: 0.8125rem; }
+
+/* Sidebar layout */
+.sidebar-w { width: 200px; }
+.content-ml { margin-left: 200px; }
+
+/* Fixed widths that Tailwind v4 arbitrary values miss */
+.max-w-1200 { max-width: 1200px; }
+.max-w-900 { max-width: 900px; }
+.max-w-800 { max-width: 800px; }
+.max-w-640 { max-width: 640px; }
+.max-w-500 { max-width: 500px; }
+.w-500 { width: 500px; }
+.w-360 { width: 360px; }
+.w-340 { width: 340px; }
+.w-320 { width: 320px; }
+.w-260 { width: 260px; }
+.w-240 { width: 240px; }
+.w-200 { width: 200px; }
+.w-100 { width: 100px; }
+.max-w-200 { max-width: 200px; }
+.max-w-180 { max-width: 180px; }
+.min-w-320 { min-width: 320px; }
+.min-h-380 { min-height: 380px; }
+.min-h-60 { min-height: 60px; }
+.min-h-28 { min-height: 28px; }
+.max-h-350 { max-height: 350px; }
+.max-h-280 { max-height: 280px; }
+.text-9 { font-size: 9px; }
+.text-10 { font-size: 10px; }
+.z-modal { z-index: 999; }
+
+/* Layout grids */
+.dash-grid { display: grid; grid-template-columns: 1fr 340px; gap: 1rem; }
+.customize-grid { display: grid; grid-template-columns: 1fr 260px; gap: 1rem; }
+.detail-grid { display: grid; grid-template-columns: 1fr 280px; gap: 1rem; }

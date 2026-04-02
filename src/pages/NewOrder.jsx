@@ -54,7 +54,7 @@ export default function NewOrder() {
   }
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-[900px] mx-auto">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-900 mx-auto">
       {/* Top */}
       <div className="flex items-center gap-3 mb-4">
         <button onClick={() => navigate(-1)} className="text-13 text-dafo-blue font-medium flex items-center gap-1"><ArrowLeft size={14} /> Back</button>
@@ -88,7 +88,7 @@ export default function NewOrder() {
       </div>
 
       {/* Step content */}
-      <div className="min-h-[380px]">
+      <div className="min-h-380">
         {/* Step 1: Patient */}
         {step === 1 && (
           <motion.div initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }}>
@@ -159,7 +159,7 @@ export default function NewOrder() {
           <motion.div initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }}>
             <h2 className="text-base font-bold text-text-dark mb-1">Customize Specifications</h2>
             <p className="text-12 text-text-muted mb-4">Configure {product?.name} for {patient?.name}.</p>
-            <div className="grid grid-cols-[1fr_260px] gap-4">
+            <div className="grid customize-grid gap-4">
               <div className="bg-white border border-border rounded p-4 space-y-3">
                 <div><label className="text-12 font-semibold text-text-dark block mb-1">Trim Style</label>
                   <select className="w-full px-2.5 py-1.5 border border-border rounded text-13 bg-white" value={custom.trimStyle} onChange={e => setCustom({...custom, trimStyle: e.target.value})}>
@@ -191,7 +191,7 @@ export default function NewOrder() {
                   </div>
                 </div>
                 <div><label className="text-12 font-semibold text-text-dark block mb-1">Clinical Notes</label>
-                  <textarea className="w-full px-2.5 py-1.5 border border-border rounded text-13 bg-white min-h-[60px]" placeholder="Special instructions..." value={custom.notes} onChange={e => setCustom({...custom, notes: e.target.value})} />
+                  <textarea className="w-full px-2.5 py-1.5 border border-border rounded text-13 bg-white min-h-60" placeholder="Special instructions..." value={custom.notes} onChange={e => setCustom({...custom, notes: e.target.value})} />
                 </div>
               </div>
               {/* Summary panel */}
@@ -218,7 +218,7 @@ export default function NewOrder() {
 
         {/* Step 4: Review */}
         {step === 4 && (
-          <motion.div initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} className="max-w-[640px]">
+          <motion.div initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} className="max-w-640">
             <h2 className="text-base font-bold text-text-dark mb-1">Review Your Order</h2>
             <p className="text-12 text-text-muted mb-4">Verify all details before submitting.</p>
             <div className="bg-white border border-border rounded p-4 space-y-4 mb-3">
@@ -285,8 +285,8 @@ export default function NewOrder() {
 
       {/* Discard modal */}
       {showDiscard && (
-        <div className="fixed inset-0 z-[1000] bg-black/40 flex items-center justify-center" onClick={() => setShowDiscard(false)}>
-          <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-white rounded-lg p-6 w-[360px] text-center" onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0 z-modal bg-black/40 flex items-center justify-center" onClick={() => setShowDiscard(false)}>
+          <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-white rounded-lg p-6 w-360 text-center" onClick={e => e.stopPropagation()}>
             <div className="w-12 h-12 rounded-full bg-error-light text-error flex items-center justify-center mx-auto mb-3"><Trash2 size={20} /></div>
             <h2 className="text-base font-bold text-text-dark mb-1">Discard this draft?</h2>
             <p className="text-13 text-text-muted mb-4">All progress will be lost.</p>

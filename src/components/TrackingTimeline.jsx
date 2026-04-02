@@ -14,7 +14,7 @@ export default function TrackingTimeline({ currentStatus, compact = false }) {
           const active = i === idx
           return (
             <div key={step.key} className="flex items-center flex-1">
-              <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-[10px] ${
+              <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-10 ${
                 done ? 'bg-success-light text-white' : active ? 'bg-dafo-blue text-white' : 'bg-border text-text-muted'
               }`}>
                 {done ? <Check size={10} strokeWidth={3} /> : <span>{i + 1}</span>}
@@ -42,7 +42,7 @@ export default function TrackingTimeline({ currentStatus, compact = false }) {
               }`}>
                 {done ? <Check size={12} strokeWidth={3} /> : <span className="text-11 font-semibold">{i + 1}</span>}
               </div>
-              {i < trackingSteps.length - 1 && <div className={`w-0.5 flex-1 min-h-[28px] ${done ? 'bg-success-light' : 'bg-border'}`} />}
+              {i < trackingSteps.length - 1 && <div className={`w-0.5 flex-1 min-h-28 ${done ? 'bg-success-light' : 'bg-border'}`} />}
             </div>
             <div className="pb-5">
               <div className={`text-13 font-semibold ${done || active ? 'text-text-dark' : 'text-text-muted'}`}>{step.label}</div>

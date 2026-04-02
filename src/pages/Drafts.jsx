@@ -55,8 +55,8 @@ export default function Drafts() {
       )}
 
       {deleteId && (
-        <div className="fixed inset-0 z-[1000] bg-black/40 flex items-center justify-center" onClick={() => setDeleteId(null)}>
-          <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-white rounded-lg p-6 w-[340px] text-center" onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0 z-modal bg-black/40 flex items-center justify-center" onClick={() => setDeleteId(null)}>
+          <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-white rounded-lg p-6 w-340 text-center" onClick={e => e.stopPropagation()}>
             <div className="w-10 h-10 rounded-full bg-error-light text-error flex items-center justify-center mx-auto mb-2"><Trash2 size={18} /></div>
             <h2 className="text-sm font-bold text-text-dark mb-1">Discard this draft?</h2>
             <p className="text-12 text-text-muted mb-4">All progress will be lost.</p>

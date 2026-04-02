@@ -15,7 +15,7 @@ export default function Sidebar() {
   const drafts = useStore(s => s.drafts)
 
   return (
-    <aside className="fixed top-0 left-0 w-[200px] h-screen bg-dafo-blue flex flex-col z-50">
+    <aside className="fixed top-0 left-0 sidebar-w h-screen bg-dafo-blue flex flex-col z-50">
       {/* Logo */}
       <div className="px-4 py-4 border-b border-white/10">
         <div className="flex items-center gap-2">

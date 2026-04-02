@@ -37,7 +37,7 @@ export default function Orders() {
 
       {/* McMaster-style filter bar */}
       <div className="flex items-center gap-3 mb-3">
-        <div className="flex items-center gap-1.5 px-2.5 py-1 bg-white border border-border rounded text-text-muted text-13 w-[240px]">
+        <div className="flex items-center gap-1.5 px-2.5 py-1 bg-white border border-border rounded text-text-muted text-13 w-240">
           <Search size={13} />
           <input className="flex-1 outline-none bg-transparent text-text-primary" placeholder="Filter orders..." value={search} onChange={e => setSearch(e.target.value)} />
         </div>
