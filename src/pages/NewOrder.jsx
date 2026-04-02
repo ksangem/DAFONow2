@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Check, Save, Trash2, User, Package, Settings, Cl
 import { motion } from 'framer-motion'
 import useStore from '../store/useStore'
 import toast from 'react-hot-toast'
+import './NewOrder.css'
 
 const steps = [
   { n: 1, icon: User, label: 'Patient', desc: 'Start patient order' },
@@ -36,86 +37,84 @@ export default function NewOrder() {
 
   if (submitted) {
     return (
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-md mx-auto text-center py-16">
-        <div className="w-16 h-16 rounded-full bg-success/10 text-success flex items-center justify-center mx-auto mb-4"><Check size={32} /></div>
-        <h1 className="text-xl font-bold text-text-dark mb-1">Order Submitted</h1>
-        <p className="text-13 text-text-muted mb-6">Your order has been submitted to Cascade Dafo.</p>
-        <div className="text-left bg-background rounded p-4 mb-6 space-y-2 text-13">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="order-success">
+        <div className="order-success-icon"><Check size={32} /></div>
+        <h1>Order Submitted</h1>
+        <p className="sub">Your order has been submitted to Cascade Dafo.</p>
+        <div className="order-success-details">
           {[['Order ID', 'ORD-4522'], ['Job #', 'J-78902'], ['Patient', patient?.name], ['Product', product?.name], ['ETA', 'Apr 22, 2026']].map(([k, v]) => (
-            <div key={k} className="flex justify-between"><span className="text-text-muted">{k}</span><strong className="text-text-dark">{v}</strong></div>
+            <div key={k} className="row"><span className="label">{k}</span><strong className="value">{v}</strong></div>
           ))}
         </div>
-        <div className="flex gap-2">
-          <button onClick={() => navigate('/orders/ORD-4521')} className="flex-1 py-2 bg-dafo-blue text-white rounded font-semibold text-13">View Order</button>
-          <button onClick={() => navigate('/')} className="flex-1 py-2 bg-white border border-border rounded font-semibold text-13 text-text-primary">Dashboard</button>
+        <div className="order-success-actions">
+          <button onClick={() => navigate('/orders/ORD-4521')} className="btn btn-primary btn-block">View Order</button>
+          <button onClick={() => navigate('/')} className="btn btn-outline btn-block">Dashboard</button>
         </div>
       </motion.div>
     )
   }
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-900 mx-auto">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ maxWidth: 900, margin: '0 auto' }}>
       {/* Top */}
-      <div className="flex items-center gap-3 mb-4">
-        <button onClick={() => navigate(-1)} className="text-13 text-dafo-blue font-medium flex items-center gap-1"><ArrowLeft size={14} /> Back</button>
-        <h1 className="text-lg font-bold text-text-dark">New Order</h1>
-        <div className="ml-auto flex items-center gap-2">
-          {step >= 3 && <button onClick={handleSave} className="flex items-center gap-1 px-2.5 py-1 text-12 border border-border rounded text-text-primary hover:bg-background"><Save size={12} /> Save Draft</button>}
+      <div className="new-order-top">
+        <button onClick={() => navigate(-1)} className="btn btn-ghost btn-sm"><ArrowLeft size={14} /> Back</button>
+        <h1>New Order</h1>
+        <div className="actions">
+          {step >= 3 && <button onClick={handleSave} className="btn btn-outline btn-sm"><Save size={12} /> Save Draft</button>}
         </div>
       </div>
 
-      {/* Progress — compact McMaster style */}
-      <div className="flex items-center bg-white border border-border rounded px-4 py-2.5 mb-5 gap-0">
+      {/* Progress stepper */}
+      <div className="new-order-stepper">
         {steps.map((s, i) => {
           const done = s.n < step, active = s.n === step, Icon = s.icon
+          const dotClass = done ? 'done' : active ? 'active' : 'pending'
+          const labelClass = done ? 'done' : active ? 'active' : 'pending'
           return (
-            <div key={s.n} className="flex items-center flex-1">
-              <div className="flex items-center gap-2">
-                <div className={`w-7 h-7 rounded-full flex items-center justify-center text-12 font-bold shrink-0 ${
-                  done ? 'bg-success-light text-white' : active ? 'bg-dafo-blue text-white' : 'bg-background border border-border text-text-muted'
-                }`}>
+            <div key={s.n} className="new-order-step">
+              <div className="new-order-step-inner">
+                <div className={`new-order-step-dot ${dotClass}`}>
                   {done ? <Check size={12} strokeWidth={3} /> : <Icon size={12} />}
                 </div>
-                <div className="hidden sm:block">
-                  <div className={`text-12 font-semibold leading-tight ${active ? 'text-text-dark' : done ? 'text-success' : 'text-text-muted'}`}>{s.label}</div>
-                  {active && <div className="text-11 text-dafo-blue">{s.desc}</div>}
+                <div>
+                  <div className={`new-order-step-label ${labelClass}`}>{s.label}</div>
+                  {active && <div className="new-order-step-desc">{s.desc}</div>}
                 </div>
               </div>
-              {i < steps.length - 1 && <div className={`flex-1 h-0.5 mx-2 ${done ? 'bg-success-light' : 'bg-border'}`} />}
+              {i < steps.length - 1 && <div className={`new-order-step-connector ${done ? 'done' : 'pending'}`} />}
             </div>
           )
         })}
       </div>
 
       {/* Step content */}
-      <div className="min-h-380">
+      <div className="new-order-content">
         {/* Step 1: Patient */}
         {step === 1 && (
           <motion.div initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }}>
-            <h2 className="text-base font-bold text-text-dark mb-1">Select Patient</h2>
-            <p className="text-12 text-text-muted mb-3">Choose existing or create new.</p>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="flex items-center gap-1.5 px-2.5 py-1 bg-white border border-border rounded text-13 flex-1">
-                <Search size={13} className="text-text-muted" />
-                <input className="flex-1 outline-none bg-transparent" placeholder="Search by name or ID..." value={patSearch} onChange={e => setPatSearch(e.target.value)} />
+            <h2 className="new-order-section-title">Select Patient</h2>
+            <p className="new-order-section-sub">Choose existing or create new.</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+              <div className="search-input" style={{ flex: 1 }}>
+                <Search size={13} />
+                <input placeholder="Search by name or ID..." value={patSearch} onChange={e => setPatSearch(e.target.value)} />
               </div>
-              <button className="flex items-center gap-1 px-2.5 py-1 border border-border rounded text-12 font-medium text-text-primary hover:bg-background"><Plus size={12} /> New Patient</button>
+              <button className="btn btn-outline btn-sm"><Plus size={12} /> New Patient</button>
             </div>
-            <div className="space-y-1.5">
+            <div className="gap-stack-2">
               {filteredP.map(p => (
                 <button key={p.id} onClick={() => setPatient(p)}
-                  className={`flex items-center gap-3 w-full px-3 py-2 rounded border transition-colors text-left ${
-                    patient?.id === p.id ? 'border-dafo-blue bg-dafo-blue-50' : 'border-border bg-white hover:bg-background'
-                  }`}>
-                  <div className="w-8 h-8 rounded-full bg-accent-light text-amber-700 flex items-center justify-center text-11 font-bold shrink-0">
+                  className={'patient-select-card' + (patient?.id === p.id ? ' selected' : '')}>
+                  <div className="avatar avatar-md avatar-accent">
                     {p.name.split(' ').map(n => n[0]).join('')}
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-13 font-medium text-text-dark">{p.name}</div>
-                    <div className="text-11 text-text-muted">{p.id} — DOB: {p.dob} — {p.diagnosis}</div>
+                  <div className="info">
+                    <div className="name">{p.name}</div>
+                    <div className="sub">{p.id} — DOB: {p.dob} — {p.diagnosis}</div>
                   </div>
-                  <div className="text-11 text-text-muted whitespace-nowrap">{p.orders} orders</div>
-                  {patient?.id === p.id && <div className="w-5 h-5 rounded-full bg-dafo-blue text-white flex items-center justify-center"><Check size={11} /></div>}
+                  <div className="orders-count">{p.orders} orders</div>
+                  {patient?.id === p.id && <div className="check"><Check size={11} /></div>}
                 </button>
               ))}
             </div>
@@ -125,28 +124,26 @@ export default function NewOrder() {
         {/* Step 2: Product */}
         {step === 2 && (
           <motion.div initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }}>
-            <h2 className="text-base font-bold text-text-dark mb-1">Select DAFO Type</h2>
-            <p className="text-12 text-text-muted mb-3">Choose product for {patient?.name}.</p>
-            <div className="flex gap-1 mb-3 flex-wrap">
+            <h2 className="new-order-section-title">Select DAFO Type</h2>
+            <p className="new-order-section-sub">Choose product for {patient?.name}.</p>
+            <div className="filter-pills" style={{ marginBottom: 12 }}>
               {categories.map(c => (
-                <button key={c} onClick={() => setProdFilter(c)} className={`px-2 py-0.5 rounded text-12 font-medium ${prodFilter === c ? 'bg-dafo-blue text-white' : 'bg-white border border-border text-text-primary hover:bg-background'}`}>
+                <button key={c} onClick={() => setProdFilter(c)} className={'filter-pill' + (prodFilter === c ? ' active' : '')}>
                   {c === 'all' ? 'All' : c === 'popular' ? 'Popular' : c}
                 </button>
               ))}
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-2 gap-2">
               {filteredProd.map(p => (
                 <button key={p.id} onClick={() => setProduct(p)}
-                  className={`flex gap-3 p-3 rounded border text-left transition-colors ${
-                    product?.id === p.id ? 'border-dafo-blue bg-dafo-blue-50' : 'border-border bg-white hover:bg-background'
-                  }`}>
-                  <div className={`w-12 h-12 rounded flex items-center justify-center shrink-0 ${product?.id === p.id ? 'bg-dafo-blue text-white' : 'bg-background text-text-muted'}`}>
+                  className={'product-select-card' + (product?.id === p.id ? ' selected' : '')}>
+                  <div className={'product-select-icon' + (product?.id === p.id ? ' selected' : '')}>
                     <Package size={20} />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-13 font-medium text-text-dark">{p.name}</div>
-                    <div className="text-11 text-text-muted line-clamp-2">{p.desc}</div>
-                    <div className="text-11 text-dafo-blue font-medium mt-0.5">{p.category} — {p.sku}</div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div className="product-select-name">{p.name}</div>
+                    <div className="product-select-desc">{p.desc}</div>
+                    <div className="product-select-meta">{p.category} — {p.sku}</div>
                   </div>
                 </button>
               ))}
@@ -157,58 +154,62 @@ export default function NewOrder() {
         {/* Step 3: Customize */}
         {step === 3 && (
           <motion.div initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }}>
-            <h2 className="text-base font-bold text-text-dark mb-1">Customize Specifications</h2>
-            <p className="text-12 text-text-muted mb-4">Configure {product?.name} for {patient?.name}.</p>
+            <h2 className="new-order-section-title">Customize Specifications</h2>
+            <p className="new-order-section-sub">Configure {product?.name} for {patient?.name}.</p>
             <div className="grid customize-grid gap-4">
-              <div className="bg-white border border-border rounded p-4 space-y-3">
-                <div><label className="text-12 font-semibold text-text-dark block mb-1">Trim Style</label>
-                  <select className="w-full px-2.5 py-1.5 border border-border rounded text-13 bg-white" value={custom.trimStyle} onChange={e => setCustom({...custom, trimStyle: e.target.value})}>
+              <div className="customize-form">
+                <div className="field">
+                  <label className="form-label">Trim Style</label>
+                  <select className="form-select" value={custom.trimStyle} onChange={e => setCustom({...custom, trimStyle: e.target.value})}>
                     <option value="standard">Standard</option><option value="turbo">Turbo</option><option value="extended">Extended</option><option value="sport">Sport</option>
                   </select>
                 </div>
-                <div><label className="text-12 font-semibold text-text-dark block mb-1">Pattern / Color</label>
-                  <div className="flex flex-wrap gap-1">
+                <div className="field">
+                  <label className="form-label">Pattern / Color</label>
+                  <div className="pattern-chips">
                     {['Blue', 'Pink', 'Green', 'Purple', 'Dinosaur', 'Floral', 'Sports', 'Custom'].map(c => (
-                      <button key={c} onClick={() => setCustom({...custom, pattern: c})} className={`px-2 py-0.5 rounded text-12 ${custom.pattern === c ? 'bg-dafo-blue text-white' : 'bg-background border border-border text-text-primary'}`}>{c}</button>
+                      <button key={c} onClick={() => setCustom({...custom, pattern: c})} className={'pattern-chip' + (custom.pattern === c ? ' selected' : '')}>{c}</button>
                     ))}
                   </div>
                 </div>
-                <div><label className="text-12 font-semibold text-text-dark block mb-1">Closure</label>
-                  <select className="w-full px-2.5 py-1.5 border border-border rounded text-13 bg-white" value={custom.closure} onChange={e => setCustom({...custom, closure: e.target.value})}>
+                <div className="field">
+                  <label className="form-label">Closure</label>
+                  <select className="form-select" value={custom.closure} onChange={e => setCustom({...custom, closure: e.target.value})}>
                     <option value="velcro">Velcro</option><option value="lace">Lace</option><option value="boa">BOA</option>
                   </select>
                 </div>
-                <div><label className="text-12 font-semibold text-text-dark block mb-1">Padding</label>
-                  <select className="w-full px-2.5 py-1.5 border border-border rounded text-13 bg-white" value={custom.padding} onChange={e => setCustom({...custom, padding: e.target.value})}>
+                <div className="field">
+                  <label className="form-label">Padding</label>
+                  <select className="form-select" value={custom.padding} onChange={e => setCustom({...custom, padding: e.target.value})}>
                     <option value="standard">Standard</option><option value="extra">Extra</option><option value="minimal">Minimal</option>
                   </select>
                 </div>
-                <div><label className="text-12 font-semibold text-text-dark block mb-1">Laterality</label>
-                  <div className="flex gap-1">
+                <div className="field">
+                  <label className="form-label">Laterality</label>
+                  <div className="laterality-group">
                     {['Left', 'Right', 'Bilateral'].map(l => (
-                      <button key={l} onClick={() => setCustom({...custom, laterality: l.toLowerCase()})} className={`flex-1 py-1.5 rounded text-12 font-medium border ${custom.laterality === l.toLowerCase() ? 'border-dafo-blue bg-dafo-blue-50 text-dafo-blue' : 'border-border bg-white text-text-primary'}`}>{l}</button>
+                      <button key={l} onClick={() => setCustom({...custom, laterality: l.toLowerCase()})} className={'laterality-btn' + (custom.laterality === l.toLowerCase() ? ' selected' : '')}>{l}</button>
                     ))}
                   </div>
                 </div>
-                <div><label className="text-12 font-semibold text-text-dark block mb-1">Clinical Notes</label>
-                  <textarea className="w-full px-2.5 py-1.5 border border-border rounded text-13 bg-white min-h-60" placeholder="Special instructions..." value={custom.notes} onChange={e => setCustom({...custom, notes: e.target.value})} />
+                <div className="field">
+                  <label className="form-label">Clinical Notes</label>
+                  <textarea className="form-textarea" placeholder="Special instructions..." value={custom.notes} onChange={e => setCustom({...custom, notes: e.target.value})} />
                 </div>
               </div>
               {/* Summary panel */}
-              <div className="bg-white border border-border rounded p-3 sticky top-20 self-start">
-                <h3 className="text-12 font-semibold text-text-dark mb-3">Order Summary</h3>
-                <div className="space-y-2 text-12">
-                  <div><span className="text-text-muted block text-11 uppercase tracking-wide">Patient</span><span className="font-medium text-text-dark">{patient?.name}</span></div>
-                  <div><span className="text-text-muted block text-11 uppercase tracking-wide">Product</span><span className="font-medium text-text-dark">{product?.name}</span></div>
-                  <hr className="border-border" />
-                  <div><span className="text-text-muted block text-11 uppercase tracking-wide">Specs</span>
-                    <div className="space-y-0.5 text-text-primary">
-                      <div>Trim: {custom.trimStyle}</div>
-                      <div>Pattern: {custom.pattern || '—'}</div>
-                      <div>Closure: {custom.closure}</div>
-                      <div>Padding: {custom.padding}</div>
-                      <div>Laterality: {custom.laterality}</div>
-                    </div>
+              <div className="order-summary-panel">
+                <h3>Order Summary</h3>
+                <div className="summary-section"><span className="summary-label">Patient</span><span className="summary-value">{patient?.name}</span></div>
+                <div className="summary-section"><span className="summary-label">Product</span><span className="summary-value">{product?.name}</span></div>
+                <hr />
+                <div className="summary-section"><span className="summary-label">Specs</span>
+                  <div className="summary-specs">
+                    <div>Trim: {custom.trimStyle}</div>
+                    <div>Pattern: {custom.pattern || '—'}</div>
+                    <div>Closure: {custom.closure}</div>
+                    <div>Padding: {custom.padding}</div>
+                    <div>Laterality: {custom.laterality}</div>
                   </div>
                 </div>
               </div>
@@ -218,33 +219,33 @@ export default function NewOrder() {
 
         {/* Step 4: Review */}
         {step === 4 && (
-          <motion.div initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} className="max-w-640">
-            <h2 className="text-base font-bold text-text-dark mb-1">Review Your Order</h2>
-            <p className="text-12 text-text-muted mb-4">Verify all details before submitting.</p>
-            <div className="bg-white border border-border rounded p-4 space-y-4 mb-3">
+          <motion.div initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} style={{ maxWidth: 640 }}>
+            <h2 className="new-order-section-title">Review Your Order</h2>
+            <p className="new-order-section-sub">Verify all details before submitting.</p>
+            <div className="card" style={{ padding: 16, marginBottom: 12 }}>
               {[
                 { icon: User, title: 'Patient', editStep: 1, rows: [['Name', patient?.name], ['ID', patient?.id], ['DOB', patient?.dob], ['Diagnosis', patient?.diagnosis]] },
                 { icon: Package, title: 'Product', editStep: 2, rows: [['DAFO Type', product?.name], ['Category', product?.category], ['SKU', product?.sku]] },
                 { icon: Settings, title: 'Specifications', editStep: 3, rows: [['Trim', custom.trimStyle], ['Pattern', custom.pattern || '—'], ['Closure', custom.closure], ['Padding', custom.padding], ['Laterality', custom.laterality]] },
               ].map((section) => (
-                <div key={section.title}>
-                  <div className="flex items-center gap-2 mb-2">
-                    <section.icon size={14} className="text-dafo-blue" />
-                    <h3 className="text-13 font-semibold text-text-dark flex-1">{section.title}</h3>
-                    <button onClick={() => setStep(section.editStep)} className="text-12 text-dafo-blue font-medium">Edit</button>
+                <div key={section.title} className="review-section">
+                  <div className="review-section-header">
+                    <section.icon size={14} style={{ color: 'var(--color-primary)' }} />
+                    <h3>{section.title}</h3>
+                    <button onClick={() => setStep(section.editStep)} className="edit-btn">Edit</button>
                   </div>
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-13">
+                  <div className="review-grid">
                     {section.rows.map(([k, v]) => (
-                      <div key={k}><span className="text-text-muted text-12">{k}: </span><span className="font-medium text-text-dark">{v}</span></div>
+                      <div key={k}><span className="label">{k}: </span><span className="value">{v}</span></div>
                     ))}
                   </div>
-                  {section.title !== 'Specifications' && <hr className="border-border mt-3" />}
+                  {section.title !== 'Specifications' && <hr className="review-divider" />}
                 </div>
               ))}
-              {custom.notes && <div className="bg-background rounded p-2 text-12"><span className="text-text-muted">Notes: </span>{custom.notes}</div>}
+              {custom.notes && <div className="review-notes"><span className="label">Notes: </span>{custom.notes}</div>}
             </div>
-            <div className="flex items-start gap-2 p-3 bg-accent-light rounded text-12 text-amber-800">
-              <AlertCircle size={14} className="shrink-0 mt-0.5" />
+            <div className="review-warning">
+              <AlertCircle size={14} style={{ flexShrink: 0, marginTop: 2 }} />
               <div><strong>Verify all details.</strong> Orders cannot be modified after submission.</div>
             </div>
           </motion.div>
@@ -252,31 +253,31 @@ export default function NewOrder() {
 
         {/* Step 5: Submit */}
         {step === 5 && (
-          <motion.div initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} className="max-w-md mx-auto text-center py-8">
-            <div className="w-14 h-14 rounded-full bg-dafo-blue-50 text-dafo-blue flex items-center justify-center mx-auto mb-4"><Send size={24} /></div>
-            <h2 className="text-lg font-bold text-text-dark mb-1">Ready to Submit</h2>
-            <p className="text-13 text-text-muted mb-5">Order for <strong>{patient?.name}</strong> — <strong>{product?.name}</strong></p>
-            <div className="text-left bg-background rounded p-3 mb-5 space-y-1 text-12">
+          <motion.div initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} className="submit-center">
+            <div className="submit-icon"><Send size={24} /></div>
+            <h2 style={{ fontSize: 'var(--font-size-lg)', fontWeight: 700, color: 'var(--color-gray-800)', marginBottom: 4 }}>Ready to Submit</h2>
+            <p style={{ fontSize: 'var(--font-size-13)', color: 'var(--color-gray-400)', marginBottom: 20 }}>Order for <strong>{patient?.name}</strong> — <strong>{product?.name}</strong></p>
+            <div className="submit-summary">
               <div>Patient: {patient?.name}</div>
               <div>Product: {product?.name}</div>
               <div>Trim: {custom.trimStyle} — {custom.laterality}</div>
               <div>Est. Processing: 10–14 business days</div>
             </div>
-            <button onClick={() => setSubmitted(true)} className="w-full py-2.5 bg-dafo-blue text-white rounded font-semibold text-sm flex items-center justify-center gap-2 hover:bg-dafo-blue-light transition-colors">
+            <button onClick={() => setSubmitted(true)} className="btn btn-primary btn-block btn-lg">
               <Send size={16} /> Submit Order to Cascade
             </button>
-            <p className="text-11 text-text-muted mt-2">You'll receive confirmation and can track in real time.</p>
+            <p className="submit-note">You'll receive confirmation and can track in real time.</p>
           </motion.div>
         )}
       </div>
 
       {/* Footer nav */}
       {step < 5 && (
-        <div className="flex items-center justify-between pt-4 mt-6 border-t border-border">
-          <div>{step > 1 && <button onClick={() => setStep(step - 1)} className="flex items-center gap-1 px-3 py-1.5 border border-border rounded text-13 font-medium text-text-primary hover:bg-background"><ArrowLeft size={14} /> Back</button>}</div>
-          <div className="flex items-center gap-2">
-            {step >= 3 && <button onClick={() => setShowDiscard(true)} className="text-12 text-text-muted hover:text-error flex items-center gap-1"><Trash2 size={12} /> Discard Draft</button>}
-            <button onClick={() => setStep(step + 1)} disabled={!canNext()} className={`flex items-center gap-1 px-4 py-1.5 rounded text-13 font-semibold transition-colors ${canNext() ? 'bg-dafo-blue text-white hover:bg-dafo-blue-light' : 'bg-border text-text-muted cursor-not-allowed'}`}>
+        <div className="new-order-footer">
+          <div>{step > 1 && <button onClick={() => setStep(step - 1)} className="btn btn-outline btn-sm"><ArrowLeft size={14} /> Back</button>}</div>
+          <div className="right">
+            {step >= 3 && <button onClick={() => setShowDiscard(true)} className="discard-link"><Trash2 size={12} /> Discard Draft</button>}
+            <button onClick={() => setStep(step + 1)} disabled={!canNext()} className="btn btn-primary">
               {step === 4 ? 'Proceed to Submit' : 'Continue'} <ArrowRight size={14} />
             </button>
           </div>
@@ -285,14 +286,14 @@ export default function NewOrder() {
 
       {/* Discard modal */}
       {showDiscard && (
-        <div className="fixed inset-0 z-modal bg-black/40 flex items-center justify-center" onClick={() => setShowDiscard(false)}>
-          <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-white rounded-lg p-6 w-360 text-center" onClick={e => e.stopPropagation()}>
-            <div className="w-12 h-12 rounded-full bg-error-light text-error flex items-center justify-center mx-auto mb-3"><Trash2 size={20} /></div>
-            <h2 className="text-base font-bold text-text-dark mb-1">Discard this draft?</h2>
-            <p className="text-13 text-text-muted mb-4">All progress will be lost.</p>
-            <div className="flex gap-2">
-              <button onClick={() => setShowDiscard(false)} className="flex-1 py-1.5 border border-border rounded text-13 font-medium">Cancel</button>
-              <button onClick={() => navigate('/')} className="flex-1 py-1.5 bg-error text-white rounded text-13 font-semibold">Discard Draft</button>
+        <div className="modal-overlay" onClick={() => setShowDiscard(false)}>
+          <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="discard-modal" onClick={e => e.stopPropagation()}>
+            <div className="discard-modal-icon"><Trash2 size={20} /></div>
+            <h2>Discard this draft?</h2>
+            <p>All progress will be lost.</p>
+            <div className="discard-modal-actions">
+              <button onClick={() => setShowDiscard(false)} className="btn btn-outline btn-block">Cancel</button>
+              <button onClick={() => navigate('/')} className="btn btn-error btn-block">Discard Draft</button>
             </div>
           </motion.div>
         </div>

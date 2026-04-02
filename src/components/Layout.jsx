@@ -5,12 +5,12 @@ import GlobalSearch from './GlobalSearch'
 
 export default function Layout({ children }) {
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="app-layout">
       <Sidebar />
-      <div className="flex-1 flex flex-col min-h-screen content-ml">
+      <div className="app-main-area">
         <AwarenessStrip />
         <Header />
-        <main className="flex-1 p-5 max-w-1200 w-full">
+        <main className="app-content">
           {children}
         </main>
       </div>

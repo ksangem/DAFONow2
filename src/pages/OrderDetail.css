@@ -1,0 +1,156 @@
+/* === ORDER DETAIL === */
+.order-detail-back {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-13);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 12px;
+}
+.order-detail-back:hover {
+  text-decoration: underline;
+}
+
+.order-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.order-detail-header h1 {
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-800);
+}
+
+.order-detail-meta {
+  font-size: var(--font-size-12);
+  color: var(--color-gray-400);
+}
+
+/* Specs tags */
+.order-spec-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.order-spec-tag {
+  padding: 2px 8px;
+  background: var(--color-gray-50);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-12);
+  color: var(--color-gray-600);
+}
+
+/* Tracking info bar */
+.order-tracking-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: var(--color-gray-50);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-12);
+}
+
+.order-tracking-info .label {
+  color: var(--color-gray-400);
+}
+
+.order-tracking-info .value {
+  font-weight: var(--font-weight-normal);
+  color: var(--color-gray-800);
+}
+
+.order-tracking-info .copy-btn {
+  color: var(--color-primary);
+  margin-left: 4px;
+}
+.order-tracking-info .copy-btn:hover {
+  text-decoration: underline;
+}
+
+/* Patient card inside detail */
+.order-patient-row {
+  display: flex;
+  gap: 8px;
+}
+
+.order-patient-info .name {
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-800);
+}
+
+.order-patient-info .sub {
+  font-size: var(--font-size-11);
+  color: var(--color-gray-400);
+}
+
+/* Product row */
+.order-product-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.order-product-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-50);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-product-name {
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-800);
+}
+
+.order-product-eta {
+  font-size: var(--font-size-11);
+  color: var(--color-gray-400);
+}
+
+/* Help card */
+.order-help-card {
+  background: var(--color-primary-50);
+  border: 1px solid var(--color-primary-100);
+  border-radius: var(--radius-md);
+  padding: 12px;
+}
+
+.order-help-card h3 {
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-800);
+  margin-bottom: 4px;
+}
+
+.order-help-card p {
+  font-size: var(--font-size-11);
+  color: var(--color-gray-400);
+  margin-bottom: 8px;
+}
+
+.order-help-card button {
+  width: 100%;
+  padding: 6px;
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  transition: background var(--transition-fast);
+}
+.order-help-card button:hover {
+  background: var(--color-gray-50);
+}

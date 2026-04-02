@@ -1,0 +1,72 @@
+/* === PATIENT DETAIL === */
+.patient-detail-back {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-13);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 12px;
+}
+.patient-detail-back:hover {
+  text-decoration: underline;
+}
+
+.patient-detail-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--color-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.patient-detail-hero h1 {
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-800);
+}
+
+.patient-detail-hero .id-dob {
+  font-size: var(--font-size-12);
+  color: var(--color-gray-400);
+}
+
+.patient-detail-hero .diagnosis {
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-gray-600);
+  margin-top: 2px;
+}
+
+.patient-detail-contacts {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.patient-detail-contacts span {
+  font-size: var(--font-size-12);
+  color: var(--color-gray-400);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.patient-detail-orders-title {
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-800);
+  margin-bottom: 8px;
+}
+
+.patient-detail-empty {
+  background: var(--color-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  text-align: center;
+  color: var(--color-gray-400);
+  font-size: var(--font-size-13);
+}

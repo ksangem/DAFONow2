@@ -49,9 +49,9 @@ export const trackingSteps = [
 ]
 
 export const statusMap = {
-  submitted: { label: 'Submitted', color: 'bg-info/10 text-info' },
-  review: { label: 'In Review', color: 'bg-accent-light text-amber-700' },
-  manufacturing: { label: 'Manufacturing', color: 'bg-purple/10 text-purple' },
-  shipped: { label: 'Shipped', color: 'bg-info/10 text-info' },
-  delivered: { label: 'Delivered', color: 'bg-success/10 text-success' },
+  submitted: { label: 'Submitted', className: 'status-submitted' },
+  review: { label: 'In Review', className: 'status-review' },
+  manufacturing: { label: 'Manufacturing', className: 'status-manufacturing' },
+  shipped: { label: 'Shipped', className: 'status-shipped' },
+  delivered: { label: 'Delivered', className: 'status-delivered' },
 }

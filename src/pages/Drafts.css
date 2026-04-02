@@ -1,0 +1,170 @@
+/* === DRAFTS PAGE === */
+.drafts-top {
+  margin-bottom: 12px;
+}
+
+.drafts-top h1 {
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-800);
+}
+
+.drafts-top p {
+  font-size: var(--font-size-12);
+  color: var(--color-gray-500);
+}
+
+.drafts-empty {
+  background: var(--color-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 48px;
+  text-align: center;
+  color: var(--color-gray-400);
+}
+
+.drafts-empty .icon {
+  color: var(--border-color);
+  margin-bottom: 8px;
+}
+
+.drafts-empty .title {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-600);
+}
+
+.drafts-empty .sub {
+  font-size: var(--font-size-12);
+}
+
+/* Draft card */
+.draft-card {
+  background: var(--color-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px;
+}
+
+.draft-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.draft-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-light);
+  color: #92560a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.draft-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.draft-card-name {
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-800);
+}
+
+.draft-card-sub {
+  font-size: var(--font-size-12);
+  color: var(--color-gray-400);
+}
+
+.draft-card-date {
+  font-size: var(--font-size-11);
+  color: var(--color-gray-400);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+/* Circular progress */
+.draft-card-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.draft-card-progress-label {
+  font-size: var(--font-size-11);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-600);
+  margin-top: -28px;
+}
+
+/* Actions */
+.draft-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(224, 228, 234, 0.5);
+}
+
+.draft-card-discard {
+  font-size: var(--font-size-12);
+  color: var(--color-gray-400);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.draft-card-discard:hover {
+  color: var(--color-error);
+}
+
+/* Delete modal */
+.draft-delete-modal {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: 340px;
+  text-align: center;
+}
+
+.draft-delete-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--color-error-light);
+  color: var(--color-error);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 8px;
+}
+
+.draft-delete-modal h2 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-800);
+  margin-bottom: 4px;
+}
+
+.draft-delete-modal p {
+  font-size: var(--font-size-12);
+  color: var(--color-gray-400);
+  margin-bottom: 16px;
+}
+
+.draft-delete-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.draft-delete-actions button {
+  flex: 1;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+}

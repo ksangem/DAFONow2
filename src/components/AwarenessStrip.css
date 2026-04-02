@@ -1,0 +1,34 @@
+/* === AWARENESS STRIP === */
+.awareness-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: var(--awareness-height);
+  background: var(--color-accent-light);
+  color: #92560a;
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+}
+
+.awareness-strip-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.awareness-strip-content a {
+  text-decoration: underline;
+  font-weight: var(--font-weight-semibold);
+  margin-left: 4px;
+  color: inherit;
+}
+
+.awareness-strip-close {
+  padding: 2px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+.awareness-strip-close:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

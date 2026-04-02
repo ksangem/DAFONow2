@@ -1,5 +1,6 @@
 import { Check } from 'lucide-react'
 import { trackingSteps } from '../data/mockData'
+import './TrackingTimeline.css'
 
 const order = ['submitted', 'review', 'manufacturing', 'shipped', 'delivered']
 
@@ -8,19 +9,18 @@ export default function TrackingTimeline({ currentStatus, compact = false }) {
 
   if (compact) {
     return (
-      <div className="flex items-center gap-0">
+      <div className="timeline-compact">
         {trackingSteps.map((step, i) => {
           const done = i < idx
           const active = i === idx
+          const dotClass = done ? 'done' : active ? 'active' : 'pending'
           return (
-            <div key={step.key} className="flex items-center flex-1">
-              <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-10 ${
-                done ? 'bg-success-light text-white' : active ? 'bg-dafo-blue text-white' : 'bg-border text-text-muted'
-              }`}>
+            <div key={step.key} className="timeline-compact-step">
+              <div className={`timeline-dot ${dotClass}`}>
                 {done ? <Check size={10} strokeWidth={3} /> : <span>{i + 1}</span>}
               </div>
               {i < trackingSteps.length - 1 && (
-                <div className={`flex-1 h-0.5 ${done ? 'bg-success-light' : 'bg-border'}`} />
+                <div className={`timeline-connector ${done ? 'done' : 'pending'}`} />
               )}
             </div>
           )
@@ -30,23 +30,25 @@ export default function TrackingTimeline({ currentStatus, compact = false }) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="timeline-full">
       {trackingSteps.map((step, i) => {
         const done = i < idx
         const active = i === idx
+        const dotClass = done ? 'done' : active ? 'active' : 'pending'
+        const labelClass = done || active ? (done ? 'completed' : 'current') : 'future'
         return (
-          <div key={step.key} className="flex gap-3">
-            <div className="flex flex-col items-center">
-              <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
-                done ? 'bg-success-light text-white' : active ? 'bg-dafo-blue text-white ring-4 ring-dafo-blue-50' : 'bg-border text-text-muted'
-              }`}>
-                {done ? <Check size={12} strokeWidth={3} /> : <span className="text-11 font-medium">{i + 1}</span>}
+          <div key={step.key} className="timeline-full-step">
+            <div className="timeline-full-rail">
+              <div className={`timeline-full-dot ${dotClass}`}>
+                {done ? <Check size={12} strokeWidth={3} /> : <span>{i + 1}</span>}
               </div>
-              {i < trackingSteps.length - 1 && <div className={`w-0.5 flex-1 min-h-28 ${done ? 'bg-success-light' : 'bg-border'}`} />}
+              {i < trackingSteps.length - 1 && (
+                <div className={`timeline-full-line ${done ? 'done' : 'pending'}`} />
+              )}
             </div>
-            <div className="pb-5">
-              <div className={`text-13 font-medium ${done || active ? 'text-text-dark' : 'text-text-muted'}`}>{step.label}</div>
-              <div className={`text-12 ${active ? 'text-dafo-blue font-medium' : 'text-text-muted'}`}>{step.desc}</div>
+            <div className="timeline-full-content">
+              <div className={`timeline-step-label ${labelClass}`}>{step.label}</div>
+              <div className={`timeline-step-desc ${active ? 'current' : 'other'}`}>{step.desc}</div>
             </div>
           </div>
         )

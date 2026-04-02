@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Search, X, User, ShoppingCart, FileEdit, Clock } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import useStore from '../store/useStore'
+import './GlobalSearch.css'
 
 export default function GlobalSearch() {
   const { searchOpen, setSearchOpen, patients, orders, drafts } = useStore()
@@ -40,54 +41,54 @@ export default function GlobalSearch() {
   const go = (to) => { navigate(to); setSearchOpen(false) }
 
   const ResultItem = ({ icon: Icon, label, sub, onClick }) => (
-    <button onClick={onClick} className="flex items-center gap-2.5 w-full px-4 py-1.5 text-left hover:bg-dafo-blue-50 transition-colors">
-      <div className="w-7 h-7 rounded bg-background flex items-center justify-center text-grey shrink-0"><Icon size={14} /></div>
-      <span className="text-13 font-medium text-text-dark">{label}</span>
-      <span className="text-12 text-text-muted ml-auto truncate max-w-200">{sub}</span>
+    <button onClick={onClick} className="search-result-item">
+      <div className="search-result-icon"><Icon size={14} /></div>
+      <span className="search-result-label">{label}</span>
+      <span className="search-result-sub">{sub}</span>
     </button>
   )
 
   return (
-    <div className="fixed inset-0 z-modal bg-black/30 flex items-start justify-center pt-24" onClick={() => setSearchOpen(false)}>
+    <div className="search-overlay" onClick={() => setSearchOpen(false)}>
       <motion.div
         initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-        className="w-500 bg-white rounded-lg shadow-xl overflow-hidden"
+        className="search-modal"
         onClick={e => e.stopPropagation()}
       >
-        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border">
-          <Search size={16} className="text-text-muted shrink-0" />
-          <input ref={inputRef} className="flex-1 outline-none text-sm text-text-dark bg-transparent" placeholder="Search patient, order, or job #" value={query} onChange={e => setQuery(e.target.value)} />
-          <button onClick={() => setSearchOpen(false)} className="text-text-muted hover:text-grey"><X size={16} /></button>
+        <div className="search-modal-input-row">
+          <Search size={16} className="search-icon" />
+          <input ref={inputRef} placeholder="Search patient, order, or job #" value={query} onChange={e => setQuery(e.target.value)} />
+          <button onClick={() => setSearchOpen(false)} className="search-modal-close"><X size={16} /></button>
         </div>
-        <div className="max-h-350 overflow-y-auto py-1">
+        <div className="search-results">
           {recents.length > 0 && (
             <div>
-              <div className="px-4 py-1 text-11 font-semibold uppercase tracking-wide text-text-muted flex items-center gap-1.5"><Clock size={11} />Recent</div>
+              <div className="search-section-label"><Clock size={11} />Recent</div>
               {recents.map((r, i) => <ResultItem key={i} icon={r.icon} label={r.label} sub={r.sub} onClick={() => go(r.to)} />)}
             </div>
           )}
           {q && mp.length > 0 && (
             <div>
-              <div className="px-4 py-1 text-11 font-semibold uppercase tracking-wide text-text-muted flex items-center gap-1.5 mt-1"><User size={11} />Patients</div>
+              <div className="search-section-label spaced"><User size={11} />Patients</div>
               {mp.map(p => <ResultItem key={p.id} icon={User} label={p.name} sub={`${p.id} — ${p.diagnosis}`} onClick={() => go(`/patients/${p.id}`)} />)}
             </div>
           )}
           {q && mo.length > 0 && (
             <div>
-              <div className="px-4 py-1 text-11 font-semibold uppercase tracking-wide text-text-muted flex items-center gap-1.5 mt-1"><ShoppingCart size={11} />Orders</div>
+              <div className="search-section-label spaced"><ShoppingCart size={11} />Orders</div>
               {mo.map(o => <ResultItem key={o.id} icon={ShoppingCart} label={o.id} sub={`${o.patient} — ${o.product}`} onClick={() => go(`/orders/${o.id}`)} />)}
             </div>
           )}
           {q && md.length > 0 && (
             <div>
-              <div className="px-4 py-1 text-11 font-semibold uppercase tracking-wide text-text-muted flex items-center gap-1.5 mt-1"><FileEdit size={11} />Drafts</div>
+              <div className="search-section-label spaced"><FileEdit size={11} />Drafts</div>
               {md.map(d => <ResultItem key={d.id} icon={FileEdit} label={d.id} sub={`${d.patient} — Step ${d.step}`} onClick={() => go('/drafts')} />)}
             </div>
           )}
           {q && !hasResults && (
-            <div className="text-center py-8 text-text-muted">
-              <p className="text-sm text-text-primary">No results for "{query}"</p>
-              <p className="text-12 mt-0.5">Try patient name, order ID, or job number</p>
+            <div className="search-no-results">
+              <p>No results for "{query}"</p>
+              <p>Try patient name, order ID, or job number</p>
             </div>
           )}
         </div>

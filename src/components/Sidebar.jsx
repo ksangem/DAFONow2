@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { LayoutDashboard, ShoppingCart, Users, FileEdit, Truck, HelpCircle, Plus } from 'lucide-react'
 import useStore from '../store/useStore'
+import './Sidebar.css'
 
 const nav = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard', end: true },
@@ -15,48 +16,40 @@ export default function Sidebar() {
   const drafts = useStore(s => s.drafts)
 
   return (
-    <aside className="fixed top-0 left-0 sidebar-w h-screen flex flex-col z-50 overflow-y-auto" style={{ backgroundColor: '#00338E' }}>
+    <aside className="sidebar">
       {/* Logo */}
-      <div className="px-4 py-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded flex items-center justify-center" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}>
-            <span className="text-white font-bold text-12">D</span>
-          </div>
+      <div className="sidebar-logo">
+        <div className="sidebar-logo-inner">
+          <div className="sidebar-logo-icon">D</div>
           <div>
-            <div className="text-white font-bold text-sm leading-tight">DAFONow</div>
-            <div className="text-11 leading-tight" style={{ color: 'rgba(255,255,255,0.4)' }}>Cascade Dafo</div>
+            <div className="sidebar-logo-text">DAFONow</div>
+            <div className="sidebar-logo-sub">Cascade Dafo</div>
           </div>
         </div>
       </div>
 
       {/* New Order */}
-      <div className="px-3 pt-3 pb-1">
-        <NavLink
-          to="/orders/new"
-          className="flex items-center justify-center gap-1.5 w-full py-2 rounded bg-accent text-white font-semibold text-13 transition-colors"
-          style={{ backgroundColor: '#F7943E' }}
-        >
+      <div className="sidebar-new-order">
+        <NavLink to="/orders/new" className="sidebar-new-order-btn">
           <Plus size={15} strokeWidth={2.5} />
           New Order
         </NavLink>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-2 py-2 overflow-y-auto">
-        <ul className="flex flex-col gap-0.5" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+      <nav className="sidebar-nav">
+        <ul className="sidebar-nav-list">
           {nav.map(item => (
             <li key={item.to}>
               <NavLink
                 to={item.to}
                 end={item.end}
-                className={({ isActive }) => 'sidebar-nav-link' + (isActive ? ' sidebar-nav-active' : '')}
+                className={({ isActive }) => 'sidebar-nav-item' + (isActive ? ' active' : '')}
               >
                 <item.icon size={16} />
                 <span>{item.label}</span>
                 {item.badgeKey === 'drafts' && drafts.length > 0 && (
-                  <span className="sidebar-draft-badge">
-                    {drafts.length}
-                  </span>
+                  <span className="sidebar-draft-badge">{drafts.length}</span>
                 )}
               </NavLink>
             </li>
@@ -65,14 +58,12 @@ export default function Sidebar() {
       </nav>
 
       {/* User */}
-      <div className="px-3 py-3" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full text-white text-11 font-bold flex items-center justify-center shrink-0" style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}>
-            RL
-          </div>
-          <div className="min-w-0">
-            <div className="text-white text-12 font-semibold truncate">Dr. Rebecca Lin</div>
-            <div className="text-11 truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>Portland Pediatric</div>
+      <div className="sidebar-user">
+        <div className="sidebar-user-inner">
+          <div className="sidebar-user-avatar">RL</div>
+          <div style={{ minWidth: 0 }}>
+            <div className="sidebar-user-name">Dr. Rebecca Lin</div>
+            <div className="sidebar-user-clinic">Portland Pediatric</div>
           </div>
         </div>
       </div>

@@ -1,0 +1,134 @@
+/* === TRACKING TIMELINE === */
+
+/* Compact (horizontal) */
+.timeline-compact {
+  display: flex;
+  align-items: center;
+}
+
+.timeline-compact-step {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.timeline-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 10px;
+}
+
+.timeline-dot.done {
+  background: var(--color-success-light);
+  color: var(--color-white);
+}
+
+.timeline-dot.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.timeline-dot.pending {
+  background: var(--border-color);
+  color: var(--color-gray-400);
+}
+
+.timeline-connector {
+  flex: 1;
+  height: 2px;
+}
+.timeline-connector.done {
+  background: var(--color-success-light);
+}
+.timeline-connector.pending {
+  background: var(--border-color);
+}
+
+/* Full (vertical) */
+.timeline-full {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-full-step {
+  display: flex;
+  gap: 12px;
+}
+
+.timeline-full-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-full-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: var(--font-size-11);
+  font-weight: var(--font-weight-medium);
+}
+
+.timeline-full-dot.done {
+  background: var(--color-success-light);
+  color: var(--color-white);
+}
+
+.timeline-full-dot.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 0 0 4px var(--color-primary-50);
+}
+
+.timeline-full-dot.pending {
+  background: var(--border-color);
+  color: var(--color-gray-400);
+}
+
+.timeline-full-line {
+  width: 2px;
+  flex: 1;
+  min-height: 28px;
+}
+.timeline-full-line.done {
+  background: var(--color-success-light);
+}
+.timeline-full-line.pending {
+  background: var(--border-color);
+}
+
+.timeline-full-content {
+  padding-bottom: 20px;
+}
+
+.timeline-step-label {
+  font-size: var(--font-size-13);
+  font-weight: var(--font-weight-medium);
+}
+.timeline-step-label.completed,
+.timeline-step-label.current {
+  color: var(--color-gray-800);
+}
+.timeline-step-label.future {
+  color: var(--color-gray-400);
+}
+
+.timeline-step-desc {
+  font-size: var(--font-size-12);
+}
+.timeline-step-desc.current {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+.timeline-step-desc.other {
+  color: var(--color-gray-400);
+}
