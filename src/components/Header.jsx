@@ -27,7 +27,7 @@ export default function Header() {
         <kbd className="ml-auto text-11 px-1 py-0.5 bg-white border border-border rounded font-sans text-text-muted">Ctrl+K</kbd>
       </button>
 
-      <div className="flex items-center gap-1" ref={ref}>
+      <div className="relative flex items-center gap-1" ref={ref}>
         <button
           onClick={() => setNotifOpen(!notifOpen)}
           className="relative w-8 h-8 flex items-center justify-center rounded hover:bg-background text-grey transition-colors"
@@ -42,7 +42,7 @@ export default function Header() {
         </button>
 
         {notifOpen && (
-          <div className="absolute top-10 right-5 w-[340px] bg-white border border-border rounded-lg shadow-lg z-50 animate-in">
+          <div className="absolute top-full right-0 mt-1 w-[340px] bg-white border border-border rounded-lg shadow-lg z-50">
             <div className="flex items-center justify-between px-3 py-2 border-b border-border">
               <span className="font-semibold text-13 text-text-dark">Notifications</span>
               <button className="text-12 text-dafo-blue font-medium">Mark all read</button>
