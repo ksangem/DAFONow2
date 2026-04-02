@@ -1,0 +1,67 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&display=swap');
+
+/* === CASCADE DAFO BRAND TOKENS === */
+@theme {
+  --color-dafo-blue: #00338E;
+  --color-dafo-blue-light: #0050C8;
+  --color-dafo-blue-50: #EBF0FA;
+  --color-dafo-blue-100: #D6E0F5;
+  --color-info: #0088CB;
+  --color-success: #007360;
+  --color-success-light: #72BF44;
+  --color-accent: #F7943E;
+  --color-accent-light: #FEF3E7;
+  --color-error: #D71440;
+  --color-error-light: #FDEAEE;
+  --color-purple: #403B78;
+  --color-violet: #A066AB;
+  --color-grey: #58595B;
+  --color-grey-light: #8B8D8F;
+  --color-surface: #FFFFFF;
+  --color-background: #F5F7FA;
+  --color-border: #E0E4EA;
+  --color-border-strong: #CBD0D8;
+  --color-text-dark: #1A1A2E;
+  --color-text-primary: #58595B;
+  --color-text-secondary: #8B8D8F;
+  --color-text-muted: #A8ABB0;
+
+  --font-sans: 'Source Sans 3', 'Gill Sans', 'Trebuchet MS', sans-serif;
+  --font-serif: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background: var(--color-background);
+  margin: 0;
+  line-height: 1.5;
+}
+
+#root { min-height: 100vh; }
+
+a { color: var(--color-dafo-blue); text-decoration: none; }
+a:hover { color: var(--color-dafo-blue-light); }
+
+button { font-family: var(--font-sans); cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: var(--font-sans); }
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 9999px; }
+
+:focus-visible { outline: 2px solid var(--color-dafo-blue); outline-offset: 1px; }
+
+/* McMaster-style dense utility classes */
+.text-11 { font-size: 0.6875rem; }
+.text-12 { font-size: 0.75rem; }
+.text-13 { font-size: 0.8125rem; }
